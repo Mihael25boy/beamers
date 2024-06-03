@@ -1,0 +1,214 @@
+\documentclass{beamer}
+\usepackage{ctex, hyperref}
+\usepackage[T1]{fontenc}
+
+% other packages
+\usepackage{latexsym,amsmath,xcolor,multicol,booktabs,calligra}
+\usepackage{graphicx,pstricks,listings,stackengine,newtxtext,newtxmath}
+
+\author{赵万春}
+\title{信息设计导论}
+\subtitle{贝叶斯劝说框架与进展}
+\institute{天津财经大学 金融学院}
+\date{2024年5月24日}
+\usepackage{tufe}
+
+% defs
+\def\cmd#1{\texttt{\color{red}\footnotesize $\backslash$#1}}
+\def\env#1{\texttt{\color{blue}\footnotesize #1}}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\definecolor{halfgray}{gray}{0.55}
+
+\lstset{
+	basicstyle=\ttfamily\small,
+	keywordstyle=\bfseries\color{deepblue},
+	emphstyle=\ttfamily\color{deepred},    % Custom highlighting style
+	stringstyle=\color{deepgreen},
+	numbers=left,
+	numberstyle=\small\color{halfgray},
+	rulesepcolor=\color{red!20!green!20!blue!20},
+	frame=shadowbox,
+}
+\usefonttheme[onlymath]{serif}
+
+\begin{document}
+
+\kaishu
+\section{基础文献}
+\begin{frame}{第一部分：入门}
+	
+\end{frame}
+
+\section{例子：KG2011}
+
+\subsection{问题引入与设定}
+
+\begin{frame}{问题}
+	法官（judge）、检察官（prosecutor）和嫌疑人（defendant）
+	\begin{itemize}
+		\item 法官的目标是公平断案
+		\item 检察官的目标是将犯人判为有罪
+	\end{itemize}
+	检察官可以调查嫌疑人，获取私人信息。\\
+	\begin{itemize}
+		\item 如果有罪，检察官如实汇报对自己有利
+		\item 如果无罪，检察官如实汇报会损害自己效用
+	\end{itemize}
+	那么，检察官能否通过设计信息结构，提高理性法官的平均定罪概率？
+\end{frame}
+
+\begin{frame}{基础设定：行动集、支付与先验概率}
+	嫌疑人有两种状态：有罪（Guilty）、无罪（Innocent）\\
+	$$\Omega=\left\lbrace G,I\right\rbrace $$
+	法官（Receiver）：定罪（convict）或释放（acquit）\\
+	法官的效用函数：
+	\begin{itemize}
+		\item[] 审判结果与状态相符时为1
+		\item[] 审判结果与状态不符时为0
+	\end{itemize}
+	检察官（Sender）的效用函数取决于法官的行为：
+	\begin{itemize}
+		\item[] 法官选择“定罪”时为1
+		\item[] 法官选择“释放”时为0
+	\end{itemize}
+	检察官的效用与事实情况无关，只和法官行为有关。\\
+	检察官与法官共享先验信念Pr$\left(G\right)=0.3$、Pr$\left(I\right)=0.7$
+
+\end{frame}
+
+\begin{frame}{检察官行为、时点设定与基准模型}
+	检察官可以调查，即选择一个信息结构$\pi: \Omega\to\Delta\left(S\right)$。\\~\\
+	检察官调查$\to$检察官向法官告知结果$\to$法官根据结果做出决策\\~\\
+	基准模型1：完全如实汇报，即令$S=G$，\\
+	如果嫌疑人有罪（guilty,$ G $），检察官必然告知法官有罪，即$\pi\left(G\mid G\right)=1$；\\
+	如果嫌疑人无罪（innocent,$ I $），检察官必然告知法官无罪，即$\pi\left(I\mid I\right)=1$。\\
+	此时法官的支付恒为1\\
+	检察官的收益是嫌疑人有罪的先验概率0.3。
+\end{frame}
+
+\begin{frame}{基准模型2：不进行任何调查}
+	无论是否有罪，检察官都告知法官同一个证据$S=\left\lbrace 1\right\rbrace $。即$\pi\left(1\mid G\right)=\pi\left(1\mid I\right)=1$\\
+	如果法官无论收到什么信号都判有罪，法官的期望收益为\\
+	$\Pr(G)\times1+\Pr(I)\times0=0.3$\\
+	如果法官无论收到什么信号都判无罪，法官的期望收益为\\
+	$\Pr(G)\times0+\Pr(I)\times1=0.7$\\\pause
+	因此，法官必然选择判无罪，检察官支付为0。\pause\\~\\
+	检察官选择如实披露比完全不披露更有利。
+\end{frame}
+
+\subsection{贝叶斯劝说}
+
+\begin{frame}{检察官能否做得更好？}
+	令$S=\left\lbrace g,i\right\rbrace $，$\pi$满足
+	$$\pi\left( g\mid G \right)=1, \pi\left( i\mid G \right)=0$$
+	$$\pi\left( g\mid I \right)=\frac{3}{7}, \pi\left( i\mid I \right)=\frac{4}{7}$$\pause
+	此时，法官收到信号$g$并判有罪时，所获支付为\pause
+
+	$$judge's \ payoff=\frac{\overset{\text{有罪时收到信号g的概率}}{\pi\left( g \mid G\right) \Pr\left( G\right)} }{\underset{\text{有罪时收到信号g的概率}}{\pi\left( g \mid G\right) \Pr\left( G\right)}+\underset{\text{无罪时收到信号g的概率}}{\pi\left( g \mid I\right) \Pr\left( I\right)}}$$\pause
+	$$=\frac{1\times0.3}{1\times 0.3+\frac{3}{7}\times 0.7}=\frac{1}{2}$$
+\end{frame}
+
+\begin{frame}{检察官能否做得更好？}
+	法官收到信号$g$并判无罪时，所获支付为
+	$$judge's \ payoff=\frac{\overset{\text{无罪时收到信号g的概率}}{\pi\left( g \mid I\right) \Pr\left( I\right)} }{\underset{\text{有罪时收到信号g的概率}}{\pi\left( g \mid G\right) \Pr\left( G\right)}+\underset{\text{无罪时收到信号g的概率}}{\pi\left( g \mid I\right) \Pr\left( I\right)}}$$\pause
+	$$=\frac{\frac{3}{7}\times 0.7}{1\times 0.3+\frac{3}{7}\times 0.7}=\frac{1}{2}$$\pause
+	如果收到信号$i$，法官可以确定嫌疑人无罪。\pause\\
+	\alert{假定判有罪和无罪的收益相同时，法官会选择对检察官有利的选项}。
+\end{frame}
+
+\begin{frame}{检察官的收益}
+	检察官的收益完全取决于发出信号$g$的概率，即
+	$$prosecutor's payoff=\underset{\text{有罪时收到信号g的概率}}{\pi\left( g \mid G\right) \Pr\left( G\right)}+\underset{\text{无罪时收到信号g的概率}}{\pi\left( g \mid I\right) \Pr\left( I\right)}=0.6$$
+	因此，只要检察官发出有罪信号，法官一定会判有罪。此时检察官的收益为0.6。\pause\\
+	可以看出，不同情境下检察官的支付满足：\\
+	什么都不披露$\left(0\right)<$完全披露$\left( 0.3\right) <$选择性披露$ \left( 0.6\right) $ 
+\end{frame}
+
+\section{正规表述}
+
+\subsection{符号表达}
+
+\begin{frame}{主体}
+	信息发送者（Sender）和信息接受者（Receiver）\\
+	状态空间$\Omega$是有穷的，且无论是S还是R都观测不到具体的状态。\\
+	S和R都了解先验概率$p\in\Delta\left( \Omega \right) $\\
+	接受者可以采取行动所构成的集合$A$是紧集。\\
+	信息接受者R的效用函数:$A\ \times \ \Omega \ \to \mathbb{R}$满足连续性。\\
+	信息发送者S的效用函数:$A\ \times \ \Omega \ \to \mathbb{R}$满足连续性。
+\end{frame}
+
+\begin{frame}{时间线与partial implementation}
+	\begin{itemize}
+		\item[1] 信息发送者S选择信息结构$\overset{\text{给定}\Omega\text{，以一定概率发送信号}S}{\pi:\Omega \to \Delta\left( S\right)} $
+		\item[2] 信息接受者R观测到信号$S$的实现，并进行贝叶斯更新，采取行动$a\in A$
+	\end{itemize}
+	解概念：子博弈精炼均衡/子博弈完美均衡。\\~\\
+	定义：信号发送者偏好的子博弈完美均衡：当信号接受者R的两个选项无差异时，接受者会选择更有利于信号发送者的选项。
+\end{frame}
+
+\begin{frame}{信念更新：后验信念}
+	考虑任何信号发送者偏好的子博弈完美均衡(Sender-preferred subgame perfect equilibrium)\\
+	给定后验信念$q\in\Delta\left( \Omega\right) $
+	令集合$A\left( q\right) \subset A$为最大化信号接受者$R$期望收益的行动集合。（存在性源于Weierstrass theorem）
+	$$A\left( q\right) =\underset{a\in A}{\arg\max}\ \  E_{q}\left[ u_{R} \left( a,\omega\right) \right] $$\pause 
+	给定信念为$q$，最大化信息接受者期望收益的集合。对不同$\omega$各自可能性相乘取期望，采取行动$a$最大化收益。即
+	$$E_{q}\left[ u_{R} \left( a,\omega\right) \right]=\sum_{\omega\in\Omega}\ \underset{\omega\text{发生的概率}}{ q\left(\omega\right)} \underset{\omega\text{发生时采取行动}a\text{的效用}}{u_{R}\left(a,\omega \right)} $$\pause
+	令$\hat{a}$表示均衡时信号接受者$R$的行动，
+	$$\hat{a}\left(q \right) \ \in \underset{a\in A}{\arg\max}\ \  E_{q}\left[ u_{S} \left( a,\omega\right) \right]$$
+\end{frame}
+
+\begin{frame}{信号发送者的期望收益}
+	给定后验信念$q$和信号接受者行动$\hat{a}\left(q\right)$，令$\hat{v}\left(q\right)$为信号发送者$R$的期望收益：
+	$$\hat{v}\left(q\right)=E_{q}\left[ u_{S} \left( \hat{a}\left(q\right),\omega\right) \right]$$
+\end{frame}
+
+\subsection{转译例子}
+
+\begin{frame}{基准假设}
+	状态空间$\Omega = \left\lbrace G,I\right\rbrace,\ \omega\in\Omega $\\
+	信息发送者：检察官（prosecutor）\\
+	信息接受者：法官（judge）\\
+	行动集合：$A=\left\lbrace \text{判无罪(acquit)},\text{判有罪(convict)}\right\rbrace \pause$\\
+	先验概率：$\Pr\left( G\right) =0.3$，$ \Pr\left( I\right) =0.7 $\\
+	信号接受者$R$的效用函数：
+	$$u_{R}\left( acquit,I\right) =u_{R}\left( convict,G\right)=1 \text{；} u_{R}\left( acquit,G\right) =u_{R}\left( convict,I\right)=0$$
+	信号发送者$S$的效用函数：
+	$$u_{S}\left( acquit,I\right) =u_{S}\left( acquit,G\right)=0 \text{；} u_{S}\left( convict,G\right) =u_{S}\left( convict,I\right)=0$$
+\end{frame}
+
+\begin{frame}{后验信念}
+	$$a\left(q\right)=\lbrace \begin{array}{ll}
+		\{acquit\} & if\ q\left(G\right)<\frac{1}{2} \\
+		\{convict\} & if\ q\left(G\right)>\frac{1}{2}
+	\end{array}$$
+\end{frame}
+
+\section{例子：王明等（2021，世界经济）}
+
+\begin{frame}{问题导入}
+	治理失灵现象普遍存在，但治理失灵被内生于治理体系中。\\~\\
+	\begin{itemize}
+		\item 基层政府的选择性执行
+		\item 政策治理的变通行为
+		\item 消极执行与运动式执行 \\~\\
+	\end{itemize}
+	
+	“非正式行为”为什么在上级政府具有纠偏能力时也会被制度化？\\
+	
+\end{frame}
+
+\subsection{基准模型设定}
+
+\begin{frame}
+	假定上级政府$U$和下级政府$D$政策集为$X\in\{a,b\}$\\
+	上级政府负责制定政策，下级政府负责执行政策。\\
+\end{frame}
+\subsection{严格执行}
+
+\subsection{变通执行}
+
+\section{贝叶斯劝说：正规表述}
+
+\end{document}
