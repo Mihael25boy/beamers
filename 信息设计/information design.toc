@@ -1,1 +1,6 @@
 \beamer@sectionintoc {1}{快速入门}{3}{0}{1}
+\beamer@sectionintoc {2}{研究内容}{6}{0}{2}
+\beamer@subsectionintoc {2}{1}{美化主题}{7}{0}{2}
+\beamer@subsectionintoc {2}{2}{如何更好地做Beamer}{9}{0}{2}
+\beamer@sectionintoc {3}{计划进度}{20}{0}{3}
+\beamer@sectionintoc {4}{参考文献}{22}{0}{4}
