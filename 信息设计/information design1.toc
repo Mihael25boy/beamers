@@ -5,8 +5,8 @@
 \beamer@sectionintoc {3}{正规表述}{23}{0}{3}
 \beamer@subsectionintoc {3}{1}{符号表达}{24}{0}{3}
 \beamer@subsectionintoc {3}{2}{转译例子}{31}{0}{3}
-\beamer@sectionintoc {4}{例子：王明等（2021，世界经济）}{35}{0}{4}
-\beamer@subsectionintoc {4}{1}{基准模型设定}{37}{0}{4}
-\beamer@subsectionintoc {4}{2}{严格执行}{39}{0}{4}
-\beamer@subsectionintoc {4}{3}{变通执行}{40}{0}{4}
-\beamer@sectionintoc {5}{贝叶斯劝说：正规表述}{41}{0}{5}
+\beamer@sectionintoc {4}{例子：王明等（2021，世界经济）}{39}{0}{4}
+\beamer@subsectionintoc {4}{1}{基准模型设定}{41}{0}{4}
+\beamer@subsectionintoc {4}{2}{严格执行}{43}{0}{4}
+\beamer@subsectionintoc {4}{3}{变通执行}{44}{0}{4}
+\beamer@sectionintoc {5}{贝叶斯劝说：正规表述}{45}{0}{5}

@@ -4,7 +4,9 @@
 
 % other packages
 \usepackage{latexsym,amsmath,xcolor,multicol,booktabs,calligra}
-\usepackage{graphicx,pstricks,listings,stackengine,newtxtext,newtxmath}
+\usepackage{graphicx,pstricks,listings,stackengine,newtxtext,newtxmath,tikz,caption,subcaption,pgfplots}
+
+
 
 \author{赵万春}
 \title{信息设计导论}
@@ -32,7 +34,7 @@
 	frame=shadowbox,
 }
 \usefonttheme[onlymath]{serif}
-
+%\pgfplotsset{compat=1.17}
 \begin{document}
 
 \kaishu
@@ -172,6 +174,7 @@
 \begin{frame}{信号发送者的期望收益}
 	给定后验信念$q$和信号接受者行动$\hat{a}\left(q\right)$，令$\hat{v}\left(q\right)$为信号发送者$R$的期望收益：
 	$$\hat{v}\left(q\right)=E_{q}\left[ u_{S} \left( \hat{a}\left(q\right),\omega\right) \right]$$
+
 \end{frame}
 
 \subsection{转译例子}
@@ -188,11 +191,119 @@
 	$$u_{S}\left( acquit,I\right) =u_{S}\left( acquit,G\right)=0 \text{；} u_{S}\left( convict,G\right) =u_{S}\left( convict,I\right)=0$$
 \end{frame}
 
-\begin{frame}{后验信念}
-	$$a\left(q\right)=\lbrace \begin{array}{ll}
+\begin{frame}{后验信念：从法官行为开始的子博弈精炼}
+
+	期望收益与“有罪”概率
+	\begin{center}
+		\begin{tikzpicture}
+		\draw [<->,thick] (0,3.5) node (yaxis) [above] {$u_{R}$}
+		|- (3.5,0) node (xaxis) [right] {$q\left( G\right) $};
+		\draw (0,0) coordinate (a) -- (1.5,1.5) coordinate (m);
+
+		\draw (3,3) coordinate (d) -- (1.5,1.5) coordinate (m);
+
+		
+		\draw[dashed] (yaxis |- m) node[left] {$\frac{1}{2}$}
+		-| (xaxis -| m) node[below] {$\frac{1}{2}$};
+		\draw (yaxis |- d) node[left] {$1$}
+		-| (xaxis -| d) node[below] {$1$};
+
+		\end{tikzpicture}
+	\end{center}
+\end{frame}
+
+
+\begin{frame}{最大化Receiver收益的集合$A\left( q\right) $}
+	\begin{center}
+		\begin{tikzpicture}
+			\draw [<->,thick] (0,3.5) node (yaxis) [above] {$u_{R}$}
+			|- (3.5,0) node (xaxis) [right] {$q\left( G\right) $};
+			\draw (0,0) coordinate (a) -- (1.5,1.5) coordinate (m);
+			\draw[red] (3,3) coordinate (d) -- (1.5,1.5) coordinate (m);
+			\draw[red] (0,3) coordinate (b) -- (1.5,1.5) coordinate (m);
+			\draw (3,0) coordinate (c) -- (1.5,1.5) coordinate (m);
+			\draw[dashed] (yaxis |- m) node[left] {$\frac{1}{2}$}
+			-| (xaxis -| m) node[below] {$\frac{1}{2}$};
+			\draw (yaxis |- d) node[left] {$1$}
+			-| (xaxis -| d) node[below] {$1$};
+			\fill[red] (m) circle (2pt);
+		\end{tikzpicture}
+	\end{center}
+	\pause
+	$$A\left(q\right)=\begin{cases}
+	\{acquit\} & if\ q\left(G\right)<\frac{1}{2} \\
+	\alert{\{convict\}} & \alert{if\ q\left(G\right)=\frac{1}{2}} \\
+	\{convict\} & if\ q\left(G\right)>\frac{1}{2}
+\end{cases}$$
+\end{frame}
+
+\begin{frame}{Receiver的行动$\hat{a}\left( q\right) $}
+	$$\hat{a}\left(q\right)=\begin{cases}
 		\{acquit\} & if\ q\left(G\right)<\frac{1}{2} \\
-		\{convict\} & if\ q\left(G\right)>\frac{1}{2}
-	\end{array}$$
+		\alert{\{convict\}} & \alert{if\ q\left(G\right)\geq\frac{1}{2}} \\
+	\end{cases}$$
+	\begin{center}
+		\begin{tikzpicture}
+			\draw [<->,thick] (0,3.5) node (yaxis) [above] {$u_{R}$}
+			|- (3.5,0) node (xaxis) [right] {$q\left( G\right) $};
+			\draw (0,0) coordinate (a) -- (1.5,1.5) coordinate (m);
+			\draw[red] (3,3) coordinate (d) -- (1.5,1.5) coordinate (m);
+			\draw[red] (0,3) coordinate (b) -- (1.5,1.5) coordinate (m);
+			\draw (3,0) coordinate (c) -- (1.5,1.5) coordinate (m);
+			\draw[dashed] (yaxis |- m) node[left] {$\frac{1}{2}$}
+			-| (xaxis -| m) node[below] {$\frac{1}{2}$};
+			\draw (yaxis |- d) node[left] {$1$}
+			-| (xaxis -| d) node[below] {$1$};
+			\fill[red] (m) circle (2pt);
+		\end{tikzpicture}
+	\end{center}
+\end{frame}
+
+\begin{frame}{检察官的行动$\hat{v}\left(q\right)$}
+	检察官（Sender）的行动需要根据法官行动反推收益函数。
+	\begin{figure}
+		\centering
+		\begin{subfigure}[b]{0.45\textwidth}
+			%\begin{adjustbox}{width=\linewidth} % rescale box
+				\begin{tikzpicture}
+					\draw [<->,thick] (0,3.5) node (yaxis) [above] {$u_{R}$}
+					|- (3.5,0) node (xaxis) [right] {$q\left( G\right) $};
+					\draw (0,0) coordinate (a) -- (1.5,1.5) coordinate (m);
+					\draw[red,thick] (3,3) coordinate (d) -- (1.5,1.5) coordinate (m);
+					\draw[red,thick] (0,3) coordinate (b) -- (1.5,1.5) coordinate (m);
+					\draw (3,0) coordinate (c) -- (1.5,1.5) coordinate (m);
+					\draw[dashed] (yaxis |- m) node[left] {$\frac{1}{2}$}
+					-| (xaxis -| m) node[below] {$\frac{1}{2}$};
+					\draw (yaxis |- d) node[left] {$1$}
+					-| (xaxis -| d) node[below] {$1$};
+					\fill[red] (m) circle (2pt);
+				\end{tikzpicture}
+			%\end{adjustbox}       %
+		\end{subfigure}%
+		\hfill
+		\begin{subfigure}[b]{0.45\textwidth}
+			%\begin{adjustbox}{width=\linewidth} % rescale box
+				\begin{tikzpicture}
+					\draw [<->,thick] (0,3.5) node (yaxis) [above] {$u_{S}$}
+					|- (3.5,0) node (xaxis) [right] {$q\left( G\right) $};
+					\draw[red,thick] (0,0) coordinate (a) -- (1.5,0) coordinate (b);
+					\draw[red,dashed] (1.5,0) coordinate (c) -- (1.5,3) coordinate (d);
+					\draw (0,3) coordinate (e) -- (1.5,3) coordinate(f);
+					\draw[red,thick] (1.5,3) coordinate (g) -- (3,3) coordinate (h);
+					\draw (3,0) coordinate (i) -- (3,3) coordinate (j);
+					\draw[dashed] (yaxis |- d) node[left] {1}
+					-| (xaxis -| d) node[below] {$\frac{1}{2}$};
+					\draw (yaxis |- i) node[left] {$0$}
+					-| (xaxis -| i) node[below] {$1$};
+					\fill[red] (d) circle (2pt);
+				\end{tikzpicture}
+			%\end{adjustbox}       %
+		\end{subfigure}
+	\end{figure}
+	$$\hat{v}\left(q\right)=\begin{cases}
+	0 & if\ q\left(G\right)<\frac{1}{2} \\
+	\alert{1} & \alert{if\ q\left(G\right)\geq\frac{1}{2}} \\
+\end{cases}$$
 \end{frame}
 
 \section{例子：王明等（2021，世界经济）}
