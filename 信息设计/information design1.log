@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2021.12.18)  5 JUN 2024 23:07
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2021.12.18)  9 JUN 2024 18:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2069,12 +2069,12 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/m/it' will be
 ] [37
 
 ]
-Overfull \hbox (5.4751pt too wide) in paragraph at lines 307--307
+Overfull \hbox (5.4751pt too wide) in paragraph at lines 308--308
 [][] 
  []
 
 
-Overfull \hbox (4.55441pt too wide) in paragraph at lines 307--307
+Overfull \hbox (4.55441pt too wide) in paragraph at lines 308--308
 [][] 
  []
 
@@ -2082,19 +2082,119 @@ Overfull \hbox (4.55441pt too wide) in paragraph at lines 307--307
 
 ] (./information design1.toc) [39
 
-] [40
+] (./information design1.toc) [40
 
-] (./information design1.toc) [41
+] [41
 
 ]
 [42
 
-] (./information design1.toc) [43
+] [43
 
-] (./information design1.toc) [44
+] [44
+
+] [45
 
 ]
-(./information design1.toc) [45
+File: pic/fig1.png Graphic file (type bmp)
+<pic/fig1.png>
+ [46
+
+]
+Overfull \hbox (4.55441pt too wide) in paragraph at lines 411--411
+[][] 
+ []
+
+Missing character: There is no ; in font nullfont!
+
+Overfull \hbox (12.7734pt too wide) in paragraph at lines 411--411
+[][] 
+ []
+
+[47
+
+]
+Overfull \hbox (4.55441pt too wide) in paragraph at lines 411--411
+[][] 
+ []
+
+Missing character: There is no ; in font nullfont!
+
+Overfull \hbox (12.7734pt too wide) in paragraph at lines 411--411
+[][] 
+ []
+
+[48
+
+] [49
+
+] (./information design1.toc) [50
+
+] (./information design1.toc) [51
+
+]
+[52
+
+] [53
+
+] [54
+
+]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 463.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\begingroup' on input line 463.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\endgroup' on input line 463.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\@@over' on input line 463.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 463.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 463.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\begingroup' on input line 463.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\endgroup' on input line 463.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\@@over' on input line 463.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 463.
+
+(./information design1.toc) [55
+
+] (./information design1.toc) [56
+
+] [57
+
+]
+(./information design1.toc) [58
+
+] [59
+
+] (./information design1.toc) [60
+
+]
+(./information design1.toc) [61
 
 ]
 \tf@nav=\write6
@@ -2106,21 +2206,21 @@ Overfull \hbox (4.55441pt too wide) in paragraph at lines 307--307
 \tf@snm=\write8
 \openout8 = `"information design1.snm"'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 335.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 335.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 493.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 493.
  (./information design1.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 335.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 335.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 493.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 493.
 Package rerunfilecheck Info: File `"information design1".out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
  ) 
 Here is how much of TeX's memory you used:
- 46971 strings out of 479418
- 1094123 string characters out of 5888104
- 1525702 words of memory out of 5000000
- 63531 multiletter control sequences out of 15000+600000
+ 47045 strings out of 479418
+ 1094187 string characters out of 5888104
+ 1552524 words of memory out of 5000000
+ 63596 multiletter control sequences out of 15000+600000
  619005 words of font info for 139 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 64i,20n,106p,815b,950s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 64i,20n,106p,815b,951s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on information design1.pdf (45 pages).
+Output written on information design1.pdf (61 pages).

@@ -284,18 +284,19 @@
 		\begin{subfigure}[b]{0.45\textwidth}
 			%\begin{adjustbox}{width=\linewidth} % rescale box
 				\begin{tikzpicture}
-					\draw [<->,thick] (0,3.5) node (yaxis) [above] {$u_{S}$}
-					|- (3.5,0) node (xaxis) [right] {$q\left( G\right) $};
-					\draw[red,thick] (0,0) coordinate (a) -- (1.5,0) coordinate (b);
-					\draw[red,dashed] (1.5,0) coordinate (c) -- (1.5,3) coordinate (d);
-					\draw (0,3) coordinate (e) -- (1.5,3) coordinate(f);
-					\draw[red,thick] (1.5,3) coordinate (g) -- (3,3) coordinate (h);
-					\draw (3,0) coordinate (i) -- (3,3) coordinate (j);
-					\draw[dashed] (yaxis |- d) node[left] {1}
-					-| (xaxis -| d) node[below] {$\frac{1}{2}$};
-					\draw (yaxis |- i) node[left] {$0$}
-					-| (xaxis -| i) node[below] {$1$};
-					\fill[red] (d) circle (2pt);
+				\draw [<->,thick] (0,3.5) node (yaxis) [above] {$u_{S}$}
+				|- (3.5,0) node (xaxis) [right] {$q\left( G\right) $};
+				\draw[red,very thick] (0,0) coordinate (a) -- (1.5,0) coordinate (b);
+				\draw[red,dashed,thick] (1.5,0) coordinate (c) -- (1.5,3) coordinate (d);
+				\draw (0,3) coordinate (e) -- (1.5,3) coordinate(f);
+				\draw[red,very thick] (1.5,3) coordinate (g) -- (3,3) coordinate (h);
+				\draw (3,0) coordinate (i) -- (3,3) coordinate (j);
+				\node (A) at (1.5,3) {};
+				\node (B) at (3,3) {};
+				\draw[dashed] (yaxis |- A) node[left] {1} -| (xaxis -| A) node[below] {$\frac{1}{2}$};
+				\draw (yaxis |- i) node[left] {$0$}
+				-| (xaxis -| i) node[below] {$1$};
+				\fill[red] (d) circle (2pt);
 				\end{tikzpicture}
 			%\end{adjustbox}       %
 		\end{subfigure}
@@ -306,7 +307,164 @@
 \end{cases}$$
 \end{frame}
 
-\section{例子：王明等（2021，世界经济）}
+\section{问题求解}
+
+\subsection{最优劝说：福利与concavification}
+
+\begin{frame}{进一步限制信息结构}
+	信息结构$\pi : \Omega \to \Delta\left( S\right) $由\alert{有穷的}信号空间$S$和一组分布$ \left\lbrace \pi \left(\bullet | \omega \right)\right\rbrace_{\omega\in\Omega}  $构成。\\
+	假设信息结构$\pi$能诱导出后验信念分布$\mu\in\Delta\left(\Delta\left( \Omega\right)\right) $，信息结构$\pi$的价值为信号发送者$R$的后验期望收益$E_{\mu}\left[\hat{v}\left(q\right)\right]  $\\
+	此时，信息结构$\pi$的价值为$E_{\mu}\left[\hat{v}\left(q\right)\right]  $
+\end{frame}
+
+\begin{frame}{基准模型中的信息结构价值}
+	\begin{itemize}
+		\item[1] 完全披露\\
+			如果检察官直接告知真实状态，均衡时检察官支付为0.3
+		\item[2] 完全不披露\\
+			如果检察官什么都不告知，均衡时检察官支付为0
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{定理1：从信息结构到后验信念}
+	以下三个命题是等价的
+	\begin{itemize}
+		\item[1] 存在一个价值为$v^{*}$的信息结构
+		\item[2] 存在一个信号实现空间$ S \subset A$（信号实现空间是行动空间子集）、价值为$v^{*}$的信息结构
+		\item[3] 存在一个贝叶斯可信的（Bayes-plausible）后验信念分布$\mu$，使信号发送者期望收益$E_{\mu}\left[\hat{v}\left(q\right)\right] $等于$v^{*}$
+	\end{itemize}
+	贝叶斯可信：先验分布等于后验分布的期望$p=E_{\mu} \left[q\right]$\\
+	分离引理：给定先验信念$ p\in \Delta \left( \Omega \right)$，当且仅当后验信念满贝叶斯可信，先验信念可以通过某一信息结构诱导出后验信念的分布。\\~\\
+	选择信息结构、选择行动建议和选择后验分布是等价的。\\
+
+\end{frame}
+
+\begin{frame}{发送者能从劝说中获益吗？}
+	推论1：发送者能从劝说中获益。\\
+	当且仅当存在贝叶斯可信后验分布$\mu\in\Delta\left(\Delta\left( \Omega\right)\right) $，使$E_{\mu} \left[\hat{v}\left(q\right)\right]>\hat{v}\left(p\right)$，信息发送者能从劝说中获益，即。$ v^{*}>\hat{v}\left(p\right) $\\
+	最优信息结构的价值是最优化后验分布问题：
+	$$\max_{\mu} E_{\mu} \left[\hat{v}\left(q\right)\right]$$
+	$$s.t.\  \underset{bayes-plausible}{p=E_{\mu} \left[q\right]}$$
+	即给定先验分布$q$，在贝叶斯可信$ p=E_{\mu} \left[q\right] $的约束下，选择后验分布$ \mu $最大化信息结构的价值$\hat{v}\left(q\right) $。\\
+	$\hat{v}$不是连续的，但是上半连续的，加之$\mu$是紧集，最优化问题恒有解。（KG2011，Proposition 6）\\~\\
+
+\end{frame}
+
+\begin{frame}{concavification}
+	回顾$\hat{v}:\ \Delta\left(\Omega \right)  \to  \mathbb{R}$的图像：
+	$$C\left(\hat{v}\right) = \left\lbrace \left(q,\hat{v}\left(q\right)\right) | q\in \Delta\left(\Omega\right)  \right\rbrace$$
+	定义$\hat{v}$的凹闭包（concave closure）$V:\Delta\left(\Omega \right)  \to  \mathbb{R}$：
+	$$V\left(q\right) = \sup \left\lbrace z\in \mathbb{R} | \left(q,z\right)\in \text{conv} \ C\left(v\right) \right\rbrace$$
+	此时，$V\left(q\right)$是盖在$\hat{v}$上最小的凹函数。
+\end{frame}
+\begin{frame}{凹闭包与最大福利的直觉}
+	\begin{center}
+		\includegraphics[width=0.5\linewidth]{pic/fig1.png}
+	\end{center}
+	如果$\left(q,v\right) \in \text{conv}\ C\left(\hat{v}\right)$，即点$\left(q,v\right)$在$C\left(\hat{v}\right)$图像的凸包内部，存在后验信念$\mu \in \Delta\left(\Delta \left(\Omega \right)\right)$，满足$q=E_{\mu}\left[q^{1}\right]$和$v=E_{\mu}\left[\hat{v}\left(q\right)\right]$\\
+		引理2：最优信息结构的价值为$V\left(p\right)$
+\end{frame}
+
+\begin{frame}{案例}
+		\begin{figure}
+		\centering
+		\begin{subfigure}[b]{0.45\textwidth}
+			%\begin{adjustbox}{width=\linewidth} % rescale box
+			\begin{tikzpicture}
+				\draw [<->,thick] (0,3.5) node (yaxis) [above] {$u_{S}$}
+				|- (3.5,0) node (xaxis) [right] {$q\left( G\right) $};
+				\draw[red,very thick] (0,0) coordinate (a) -- (1.5,0) coordinate (b);
+				\draw[red,dashed,thick] (1.5,0) coordinate (c) -- (1.5,3) coordinate (d);
+				\draw (0,3) coordinate (e) -- (1.5,3) coordinate(f);
+				\draw[red,very thick] (1.5,3) coordinate (g) -- (3,3) coordinate (h);
+				\draw (3,0) coordinate (i) -- (3,3) coordinate (j);
+				\node (A) at (1.5,3) {};
+				\node (B) at (3,3) {};
+				\draw[dashed] (yaxis |- A) node[left] {1} -| (xaxis -| A) node[below] {$\frac{1}{2}$};
+				\draw (yaxis |- i) node[left] {$0$}
+				-| (xaxis -| i) node[below] {$1$};
+			\end{tikzpicture}
+			%\end{adjustbox}       %
+		\end{subfigure}%
+		\hfill
+		\begin{subfigure}[b]{0.45\textwidth}
+			%\begin{adjustbox}{width=\linewidth} % rescale box
+			\begin{tikzpicture}
+				\draw [<->,thick] (0,3.5) node (yaxis) [above] {$u_{S}$}
+				|- (3.5,0) node (xaxis) [right] {$q\left( G\right) $};
+				\draw[green,very thick] (0,0) -- (1.5,3) -- (3,3);
+				\draw[red,very thick] (0,0) coordinate (a) -- (1.5,0) coordinate (b);
+				\draw[red,dashed,thick] (1.5,0) coordinate (c) -- (1.5,3) coordinate (d);
+				\node (A) at (1.5,3) {};
+				\node (B) at (3,3) {};
+				\draw[dashed] (3,0) -- (3,3);
+				\draw[dashed] (yaxis |- A) node[left] {1} -| (xaxis -| A) node[below] {$\frac{1}{2}$};
+				\draw[dashed] -| (xaxis -| B) node[below] {$1$};
+				\pause;
+				\node (C) at (0.9,1.8) {};
+				\draw[dashed] (yaxis |- C) node[left] {0.6} -| (xaxis -| C) node[below] {0.3};
+			\end{tikzpicture}
+			%\end{adjustbox}       %
+		\end{subfigure}
+	\end{figure}
+
+\end{frame}
+\begin{frame}{补充结论：$\hat{v}$函数性质与获益}
+	KG2011 Propositon 8：\\
+	对于任意先验概率$p\in \text{Int} \ \Delta\left(\Omega\right)$：
+	\begin{itemize}
+		\item[1] 如果$\hat{v}$严格凹，$\hat{v}=V$，信号发送者不能从劝说中获益。
+		\item[2] 如果$\hat{v}$严格凸，信号发送者完全披露时获益最大。
+		\item[3] 如果$\hat{v}$为凸函数（非凹函数），信号发送者能从劝说中获益。
+	\end{itemize}
+\end{frame}
+
+
+\section{把信息设计转化成最优化问题}
+
+\subsection{广义信息设计}
+
+\begin{frame}{用博弈论的思路探讨信息设计}
+	一个完整的博弈$G$需要包括至少三部分：
+	\begin{itemize}
+		\item[1] 参与者$i\in I$、参与者行动$A_{i}$和行动的效用$u_{i}: \ A\times\Omega\to\mathbb{R}$。
+		\item[2] 状态（不确定、不能对所有人公开）$\omega\in\Omega$
+		\item[3] 状态发生的先验概率分布(先验信念)$p\in \text{Int} \left(\Delta\left(\Omega\right)\right)$
+	\end{itemize}
+	$$G=\left(\left(A_{i},u_{i}\right),\Omega,p\right)$$
+	博弈结果$v\in\Delta\left(A\times\Omega\right)$：行动与状态的联合分布概率\\
+	信息结构：$T=\left(\left(S_{i}\right)_{i\in I},\tau\right)$
+	\begin{itemize}
+		\item[$S_{i}$] ：私人信号空间，只有参与人自己知道
+		\item[$ S $] ：信号组合，$S=S_{1}\times\dots S_{|I|}$
+		\item[$ \tau $] ：共同先验信念，$\tau \in \Delta\left(S\times\Omega\right)$，某一信息结构同一状态下的先验信念$p\left(\omega\right)$必须与关于状态的边缘分布$\sum_{S}\ \tau\left(S,\omega\right)$一致。
+		
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{法官与检察官：博弈语言}
+	\begin{itemize}
+		\item[] $I=\left\lbrace \text{法官} \right\rbrace$
+		\item[] $A=\left\lbrace \text{判无罪（acquit），判有罪（convict）} \right\rbrace$
+		\item[] $\Omega=\left\lbrace G,I\right\rbrace$
+		\item[] $p\left(G\right)=0.3, \ p\left(I\right)=0.7$
+		\item[] $u\left( acquit,I\right) =u\left( convict,G\right)=1 \text{；} $
+		\item[] $u\left( acquit,G\right) =u\left( convict,I\right)=0$
+		\item[] $S=\left\lbrace g,i\right\rbrace$
+		\item[] description
+	\end{itemize}
+	信息结构$T=\left(S,\tau\right)$满足
+	$$\tau\left(g,G\right)=\ $$
+\end{frame}
+
+\begin{frame}
+	内容...
+\end{frame}
+\subsection{贝叶斯纳什均衡：为什么是$\frac{3}{7}$和$\frac{4}{7}$？}
+
+
+
+\section{中文例子}
 
 \begin{frame}{问题导入}
 	治理失灵现象普遍存在，但治理失灵被内生于治理体系中。\\~\\
@@ -330,6 +488,6 @@
 
 \subsection{变通执行}
 
-\section{贝叶斯劝说：正规表述}
+
 
 \end{document}
